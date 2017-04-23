@@ -13,7 +13,7 @@ The goals / steps of this project are the following:
 * Summarize the results with a written report
 
 
-[//]: # (Image References)
+
 
 [image1]: ./WriteUpPics/chart1.png "Visualization"
 [image2]: ./WriteUpPics/visualization.png "Visualization 2"
