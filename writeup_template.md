@@ -15,14 +15,18 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
+[image1]: ../WriteUpPics/chart1.png "Visualization"
+[image2]: ../WriteUpPics/visualization.png "Visualization 2"
+[image3]: ../WriteUpPics/color.png "Color"
+[image4]: ../WriteUpPics/WebImages/1.png "Traffic Sign 1"
+[image5]: ../WriteUpPics/WebImages/2.png "Traffic Sign 2"
+[image6]: ../WriteUpPics/WebImages/3.jpg "Traffic Sign 3"
+[image7]: ../WriteUpPics/WebImages/4.png "Traffic Sign 4"
+[image8]: ../WriteUpPics/WebImages/5.png "Traffic Sign 5"
+[image9]: ../WriteUpPics/grayscale.png "Grayscale"
+[image10]: ../WriteUpPics/comparison.png "Comparison"
+[image11]: ../WriteUpPics/WebImages/6.jpg "Traffic Sign 5"
+
 
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -32,7 +36,7 @@ The goals / steps of this project are the following:
 
 ####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
 
-You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
+You're reading it! and here is a link to my [project code](https://github.com/vikasiyer/carnd-term1-p2)
 
 ###Data Set Summary & Exploration
 
@@ -44,8 +48,9 @@ I used the pandas library to calculate summary statistics of the traffic
 signs data set:
 
 * The size of training set is 34799
+* The size of validation set is 4410
 * The size of test set is 12630
-* The shape of a traffic sign image is 32x32
+* The shape of a traffic sign image is 32x32X3
 * The number of unique classes/labels in the data set is 43
 
 ####2. Include an exploratory visualization of the dataset and identify where the code is in your code file.
@@ -55,6 +60,7 @@ The code for this step is contained in the third code cell of the IPython notebo
 Here are exploratory visualization of the data set:
 
 ![alt text][image1]
+![alt text][image2]
 
 ###Design and Test a Model Architecture
 
@@ -62,15 +68,18 @@ Here are exploratory visualization of the data set:
 
 The code for this step is contained in the fourth code cell of the IPython notebook.
 
-As a first step, I decided to convert the images to grayscale because the color channel does not contribute
+As a first step, I decided to convert the images to grayscale because the color channel does not contribute much in convolutional neural network learning.
 
 Here is an example of a traffic sign image before and after grayscaling.
 
-![alt text][image2]
+![alt text][image3]
+![alt text][image9]
 
 
 
 ####2. Describe how, and identify where in your code, you set up training, validation and testing data. How much data was in each set? Explain what techniques were used to split the data into these sets. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, identify where in your code, and provide example images of the additional data)
+
+I used the testing, validation and test data provided in the project. I did not augment any additional data. This will be a possible future experiment.
 
 
 
@@ -99,7 +108,7 @@ My final model consisted of the following layers:
 | RELU					|												|
 | Dropout					|												|
 | Fully connected	3	| Output = 43        									|
-| Softmax				|        									|
+
 
 
 
@@ -118,9 +127,9 @@ Optimizer = Adam
 The code for calculating the accuracy of the model is located in the ninth cell of the Ipython notebook.
 
 My final model results were:
-* training set accuracy of 0.983
-* validation set accuracy of 0.944
-* test set accuracy of ?
+* training set accuracy of 0.987
+* validation set accuracy of 0.943
+* test set accuracy of 0.934
 
 I iterated with several hyper parameters to arrive at the numbers shown above:
 * At first, I started with the Lenet-5 architecture as suggested in the project guidelines. The validation accuracy was around the range of 0.87-0.89.
@@ -132,9 +141,11 @@ I iterated with several hyper parameters to arrive at the numbers shown above:
 
 * What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
 
-I based my architecture on the Lenet-5 architecture. Lenet-5 is relevant to the traffic sign application as it is used to classify images. Traffic sign application consists of training a huge dataset of images and hence I started with the Lenet-5, and tweaked it further to add a few dropout layers and tuned the hyperparameters to get a more desirable accuracy.
+I based my architecture on the Lenet-5 architecture. Lenet-5 is relevant to the traffic sign application as it is used to classify images. Given that Traffic sign application consists of training a huge dataset of images, convolutional layers help to share parameters.  I took Lenet-5 and tweaked it further to add a few dropout layers and tuned the hyperparameters to get a more desirable accuracy.
 
-As shown in the IPython notebook, the following chart shows the "Train, Validation and Test accuracy" plot. Given that the accuracy values are above 0.93, it demonstrates that the model is working well.
+As shown in the IPython notebook, the following chart shows the "Train vs Validation accuracy" plot. Given that the accuracy values are above 0.93, it demonstrates that the model is working well.
+
+![alt text][image10]
 
 
 
@@ -145,7 +156,7 @@ As shown in the IPython notebook, the following chart shows the "Train, Validati
 I decided to actually pick 6 images. Here are the German traffic signs that I found on the web:
 
 ![alt text][image4] ![alt text][image5] ![alt text][image6]
-![alt text][image7] ![alt text][image8]
+![alt text][image7] ![alt text][image8] ![alt text][image11]
 
 The sixth image might be difficult to classify because it is captured at an angle and the training set may not have a picture of the stop sign captured at an angle. So I picked this to see if the model can handle this.
 
@@ -157,14 +168,15 @@ Here are the results of the prediction:
 
 | Image			        |     Prediction	        					|
 |:---------------------:|:---------------------------------------------:|
+| Stop Sign				| Speed limit (80km/h)											|
 | Bumpy Road      		| Bumpy Road  									|
-| Children Crossing     			| 										|
-| Stop Sign				| Yield											|
-| 70 km/h	      		| Bumpy Road					 				|
-| 			|       							|
+| Children Crossing     			| 	Speed limit (80km/h)									|
+| Speed limit (70km/h)				|   Speed limit (80km/h) 											|
+| No vehicles      		| Speed limit (80km/h)					 				|
+| 	Stop Sign		|    Roundabout mandatory   							|
 
 
-The model was able to correctly guess 1 of the 5 traffic signs, which gives an accuracy of 20%. This compares unfavorably to the accuracy on the test set. Perhaps the quality of my images were not good enough and not similar to those in the training set.
+The model was able to correctly guess 1 of the 6 traffic signs, which gives an accuracy of 16.66%. This compares unfavorably to the accuracy on the test set. Perhaps the quality of my images were not good enough and not similar to those in the training set. Or they were able to match well at the initial layers, but didn't do well in the deeper layers.
 
 ####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction and identify where in your code softmax probabilities were outputted. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
@@ -175,17 +187,10 @@ For the second image, the model is very sure that this is a bumpy road (probabil
 | Probability         	|     Prediction	        					|
 |:---------------------:|:---------------------------------------------:|
 | 1.00000000e+00         			| Bumpy Road   									|
-| 1.46574128e-25	      			| Road work					 				|
-| 1.10197681e-25     				|Wild animals crossing 										|
-| 1.32413943e-28					| Traffic signals											|
-| 2.43779426e-31	      			| Bicycles crossing					 				|
+| 1.21212117e-14					 				|Wild animals crossing
+| 1.11301798e-14     				|Road work |
+| 1.21584390e-15					| Bicycles crossing											|
+| 4.17307325e-17	      			| Turn left ahead					 				|
 
 
-For the first image ...
-| Probability         	|     Prediction	        					|
-|:---------------------:|:---------------------------------------------:|
-| 4.73981917e-01         			| Keep right   									|
-| 2.19524011e-01	      			| Speed limit (60km/h)					 				|
-| 1.69061273e-01     				|Speed limit (80km/h) 										|
-| 2.63425820e-02					| Speed limit (120km/h)											|
-| 1.13786981e-02	      			| Dangerous curve to the right					 				|
+For all the other images, even the topmost predictions have low probabilities.
