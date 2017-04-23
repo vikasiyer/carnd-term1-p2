@@ -98,12 +98,10 @@ My final model consisted of the following layers:
 | Max pooling	      	| 2x2 stride,  outputs 14x14x6 				|
 | Convolution 5x5	    | 1x1 stride, valid padding, outputs 28x28x6     |
 | RELU					|												|
-| Dropout					|												|
 | Max pooling	      	| 2x2 stride,  outputs 5x5x16 				|
 | Flattening	      	| Output = 400 				|
 | Fully connected	1	| Output = 120        									|
 | RELU					|												|
-| Dropout					|												|
 | Fully connected	2	| Output = 84        									|
 | RELU					|												|
 | Dropout					|												|
@@ -132,16 +130,26 @@ My final model results were:
 * test set accuracy of 0.934
 
 I iterated with several hyper parameters to arrive at the numbers shown above:
-* At first, I started with the Lenet-5 architecture as suggested in the project guidelines. The validation accuracy was around the range of 0.87-0.89.
+* At first, I started with the Lenet-5 architecture as suggested in the project guidelines. The validation accuracy was around the range of 0.87-0.89. I had used the following parameters:
+    - EPOCHS:10
+    - BATCH SIZE: 128
+    - Learning Rate: .001
+
 
 * To improve the validation accuracy, I tried the following adjustments to architecture and tuned parameters as described below:
   - Added a preprocessing step of changing color image to grayscale.
-  - I started tuning the hyper parameters. I started playing with the EPOCH values, and tried increasing the BATCH size. I could see that the while the training accuracy was close to 100%, the validation accuracies improved only by about 3%.
-  - I then tried add 'dropout' layers to reduce overfitting. I also reduced the learning rate and increased the EPOCH size.
+  - I started tuning the hyper parameters. I started playing with the EPOCH values - and increased it to 50, 100 and then to 90. I plotted a graph to see the inflection point of EPOCH when the graph begins to plateau.  I also tried increasing the BATCH size from 128 to 192 and found that the accuracy improved. However, I could see that the while the training accuracy was moving closer to 100%, the validation accuracies improved only by about 3%.
+  - I then tried add 'dropout' layers to reduce overfitting. I also reduced the learning rate and increased the EPOCH size. This step took the accuracy rate above 0.93.
 
 * What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
 
-I based my architecture on the Lenet-5 architecture. Lenet-5 is relevant to the traffic sign application as it is used to classify images. Given that Traffic sign application consists of training a huge dataset of images, convolutional layers help to share parameters.  I took Lenet-5 and tweaked it further to add a few dropout layers and tuned the hyperparameters to get a more desirable accuracy.
+I based my architecture on the Lenet-5 architecture. Lenet-5 is relevant to the traffic sign application as it is used to classify images. Given that Traffic sign application consists of training a huge dataset of images, convolutional layers help to share parameters.  
+
+I took Lenet-5 and tweaked it further to add a few dropout layers and tuned the hyperparameters to get a more desirable accuracy.
+
+I tried adding a "dropout" layer after every RELU layer (4 of them). This brought down the accuracy significantly. When I reduced the number of dropouts from 4 to 2, the accuracy improved. In my current architecture, I have a dropout after the first RELU layer and after the last RELU layer.
+
+Lowering the learning rate, increasing the EPOCH and introducing a few dropouts in between the other layers seemed to be the key steps.
 
 As shown in the IPython notebook, the following chart shows the "Train vs Validation accuracy" plot. Given that the accuracy values are above 0.93, it demonstrates that the model is working well.
 
