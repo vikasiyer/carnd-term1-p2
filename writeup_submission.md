@@ -15,17 +15,17 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ../WriteUpPics/chart1.png "Visualization"
-[image2]: ../WriteUpPics/visualization.png "Visualization 2"
-[image3]: ../WriteUpPics/color.png "Color"
-[image4]: ../WriteUpPics/WebImages/1.png "Traffic Sign 1"
-[image5]: ../WriteUpPics/WebImages/2.png "Traffic Sign 2"
-[image6]: ../WriteUpPics/WebImages/3.jpg "Traffic Sign 3"
-[image7]: ../WriteUpPics/WebImages/4.png "Traffic Sign 4"
-[image8]: ../WriteUpPics/WebImages/5.png "Traffic Sign 5"
-[image9]: ../WriteUpPics/grayscale.png "Grayscale"
-[image10]: ../WriteUpPics/comparison.png "Comparison"
-[image11]: ../WriteUpPics/WebImages/6.jpg "Traffic Sign 5"
+[image1]: ./WriteUpPics/chart1.png "Visualization"
+[image2]: ./WriteUpPics/visualization.png "Visualization 2"
+[image3]: ./WriteUpPics/color.png "Color"
+[image4]: ./WriteUpPics/WebImages/1.png "Traffic Sign 1"
+[image5]: ./WriteUpPics/WebImages/2.png "Traffic Sign 2"
+[image6]: ./WriteUpPics/WebImages/3.jpg "Traffic Sign 3"
+[image7]: ./WriteUpPics/WebImages/4.png "Traffic Sign 4"
+[image8]: ./WriteUpPics/WebImages/5.png "Traffic Sign 5"
+[image9]: ./WriteUpPics/grayscale.png "Grayscale"
+[image10]: ./WriteUpPics/comparison.png "Comparison"
+[image11]: ./WriteUpPics/WebImages/6.jpg "Traffic Sign 5"
 
 
 ## Rubric Points
