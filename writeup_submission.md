@@ -194,6 +194,7 @@ For the second image, the model is very sure that this is a bumpy road (probabil
 
 
 For all the other images, even the topmost predictions have low probabilities. For eg, for one of the stop sign images, here are the probabilities:
+
 | Probability         	|     Prediction	        					|
 |:---------------------:|:---------------------------------------------:|
 | 3.57355982e-01         			| Speed limit (80km/h)   									|
